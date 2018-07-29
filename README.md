@@ -1,2 +1,3 @@
 # Reuters-news-NLP-work
-General approches on financial Reuters news
+General approches on financial Reuters news.
+Various experimental approaches
