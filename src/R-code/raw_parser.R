@@ -18,12 +18,12 @@ dgAux_04 <- get_news_to_dataFrame(list.folders[1201:1600])
 print("fourth batch read")
 dgAux_05 <- get_news_to_dataFrame(list.folders[1601:2000])
 print("fifth batch read")
-dgAux_06 <- get_news_to_dataFrame(list.folders[2001:2400])
+dgAux_06 <- get_news_to_dataFrame(list.folders[2001:2300])
 print("sixth batch read")
 #dgAux_07 <- get_news_to_dataFrame(list.folders[2401:(length(list.folders))])
 #print("seventh batch read")
 
-
+# Save files to output data folder
 saveRDS(dgAux_01,file="data/output/news_data_frame_batch_01.rds")
 saveRDS(dgAux_02,file="data/output/news_data_frame_batch_02.rds")
 saveRDS(dgAux_03,file="data/output/news_data_frame_batch_03.rds")
