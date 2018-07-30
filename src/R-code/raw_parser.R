@@ -7,7 +7,11 @@ library(quanteda)
 #install.packages("topicmodels")
 library(topicmodels)
 
+#install.packages("tidytext")
+library(tidytext)
 
+#install.packages("tidyverse")
+library(tidyverse)
 
 # Soruce utilities functions
 source(file="utils/R-code/utils-docs-parsing.R")
@@ -110,3 +114,30 @@ if(require(topicmodels)){
   terms_Docs <- topicmodels::get_terms(myLDA,10)
   terms_Docs
 }
+
+
+
+ap_topics <- tidytext::tidy(myLDA,matrix="beta")
+ap_topics
+
+
+
+ap_top_terms <- ap_topics %>%
+  group_by(topic) %>%
+  top_n(10, beta) %>%
+  ungroup() %>%
+  arrange(topic, -beta)
+#
+ap_top_terms
+#
+ap_top_terms %>%
+  mutate(term = reorder(term, beta)) %>%
+  ggplot(aes(term, beta, fill = factor(topic))) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~ topic, scales = "free") +
+  coord_flip()
+
+
+#
+ap_documents <- tidy(myLDA, matrix = "gamma")
+ap_documents
