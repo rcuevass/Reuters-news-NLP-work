@@ -63,58 +63,25 @@ get_folders_from_path <- function(path.name){
   
 }
 
-get_clean_string <- function(raw_string){
+get_clean_string <- function(raw_string,split.string=FALSE){
   # force to string in case we receive a factor
   raw_string <- as.character(raw_string)
   # Remove "chomp"
   raw_string <- gsub("(\n|<br />)"," ",raw_string)
   # Remove strings assiciated with a webstite link
   raw_string <- raw_string %>%
-    stringr::str_replace_all(c("www" = " ","http" = " "))
+    stringr::str_replace_all(c("www" = " ","http" = " ",
+                               "--" = ""))
   # Change to lower case 
   raw_string <- tolower(raw_string)
-  # Split string
-  raw_string <- strsplit(raw_string, " ")
-  
+  # Split string if requested by user
+  if (split.string) {
+    raw_string <- strsplit(raw_string, " ")
+  }
+
   return(raw_string)
-  
   
 }
 
 
 
-
-
-
-#======== working logic for text processing ===========
-# Notes:
-# 1. Text loaded from files is given as factors
-# 2. Given the above, they need to be changed to characters
-# as.character(textTest)
-
-textTest <- dgAux_01$news.text[1]
-textTest <- as.character(textTest)
-textTest <- as.vector(textTest)
-textTest
-testCorpus <- quanteda::corpus(textTest)
-testCorpus$documents
-
-getwd()
-
-
-
-
-textTest <- dgAux_01$news.text[1]
-textTest
-#textTest <- gsub("(\n|<br />|\)"," ",textTest)
-textTest <- gsub("(\n|<br />)"," ",textTest)
-
-
-
-#textTest <- stringr::str_replace(c("www","http")," ",textTest)
-#textTest <- stringr::str_replace_all(textTest, "[[:punct:]]", " ")
-textTest <- textTest %>%
-  stringr::str_replace_all(c("www" = " ","http" = " "))
-textTest <- tolower(textTest)
-textTest <- strsplit(textTest, " ")
-textTest
