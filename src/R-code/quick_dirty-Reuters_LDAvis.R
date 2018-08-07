@@ -9,6 +9,7 @@ library(servr)
 data(reviews, package = "LDAvisData")
 
 df1 <- readRDS(file="data/output/news_data_frame_batch_01.rds")
+
 reviews <- as.character(df1$news.text)
 reviews <- reviews[1:200]
 

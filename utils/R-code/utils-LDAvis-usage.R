@@ -38,7 +38,7 @@ remove_stop_words_frequency <- function(term.table,max.freq) {
 
 # Function used to put the documents into the format required
 # by the lda package:
-get.terms <- function(x) {
+get_terms <- function(x) {
   index <- match(x, vocab)
   index <- index[!is.na(index)]
   rbind(as.integer(index - 1), as.integer(rep(1, length(index))))
